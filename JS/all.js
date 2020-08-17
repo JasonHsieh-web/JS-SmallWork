@@ -51,7 +51,7 @@ function AddList(e){
     let text =document.querySelector('.txt').value; //撈出輸入框的值
     let status =document.querySelector('.status');
     let inputTxt = document.querySelector('.txt');
-    if(text.trim() !== "" ){
+    if(text.trim() !== ""){
     let todo = {
         content : text
     };

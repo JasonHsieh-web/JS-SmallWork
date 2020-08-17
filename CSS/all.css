@@ -79,6 +79,9 @@ body{
     background-color: #578356;
     border-top-right-radius:5px;
     border-bottom-right-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
 }
 .btn:hover{

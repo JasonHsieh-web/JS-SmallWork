@@ -90,6 +90,10 @@ body{
 .btn:focus,.txt:focus{
     outline: none;
 }
+.status{
+    margin: 10px 0;
+    color: #eb1227;
+}
 @media(max-width: 768px){
     .header{
         

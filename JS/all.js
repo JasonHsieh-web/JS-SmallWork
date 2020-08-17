@@ -40,16 +40,18 @@ setInterval(getTime,1000);
 let list = document.querySelector('.list');
 let btn = document.querySelector('.btn');
 let data = JSON.parse(localStorage.getItem('listData')) || []; 
-
 btn.addEventListener('click',AddList,false);
 list.addEventListener('click',ToggleDone,false);
+
 UpdateList(data);
 
 //加入代辦事項到localStorage
 function AddList(e){
     e.preventDefault();
     let text =document.querySelector('.txt').value; //撈出輸入框的值
-    let addInput =document.querySelector('.txt');
+    let status =document.querySelector('.status');
+    let inputTxt = document.querySelector('.txt');
+    if(text.trim() !== "" ){
     let todo = {
         content : text
     };
@@ -57,7 +59,12 @@ function AddList(e){
     data.push(todo);
     UpdateList(data);//更新頁面把data丟進去執行
     localStorage.setItem('listData',JSON.stringify(data));//加入key,把data字串化
-    addInput.value = "";
+    status.innerHTML = "";
+    inputTxt.value = '';
+   
+}else{
+    status.innerHTML = "請輸入代辦事項";
+}
 
 }
 

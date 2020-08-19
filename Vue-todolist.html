@@ -74,11 +74,7 @@
         el: '#app',
         data: {
             newTodo:'',
-            todos:[{
-              id:'777',
-              title:'Hello',
-              completed: false,
-            }],
+            todos:JSON.parse(localStorage.getItem('ListData')) || [],
             catchTodo:{},
             catchTitle:'',
             visibility:'all',
@@ -88,7 +84,7 @@
           addTodo: function(){
               let value =this.newTodo.trim();
               let timestamp = Math.floor(Date.now());
-             // console.log(value , timestamp);
+             
              if(!value){ //如果是空白就中斷
                return;
              }
@@ -118,46 +114,47 @@
             item.title =  this.catchTitle;
             this.catchTitle = '';
             this.catchTodo={};
-      
+            this.setLocal(); 
           },
           DeAll: function(){
       
             this.todos = [];
-          }
+            this.setLocal();
+          },
+          setLocal:function(){
+            let str = JSON.stringify(this.todos);
+            localStorage.setItem('ListData',str);
+               }
          
         },
         computed: {
           filteredTodos:function(){
             if(this.visibility == 'all')
             {
+              this.setLocal();
             return this.todos;
+
             }else if(this.visibility == 'active'){
-              let newTodos =[];
-              this.todos.forEach(function(item){
-                if(item.completed ==false){
-                  newTodos.push(item);
-                }
-              })
-              return newTodos;
+              this.setLocal();
+              return this.todos.filter(function(item){
+                return !item.completed;
+              });
             }else if(this.visibility == 'completed'){
-              let newTodos =[];
-              this.todos.forEach(function(item){
-                if(item.completed ==true){
-                  newTodos.push(item);
-                }
-              })
-              return newTodos;
-            }     
-          },
+              this.setLocal();
+              return this.todos.filter(function(item){
+                return item.completed;});   
+              };
+          },  
+            
           uncompleted:function(){
             let unTodos = this.todos.filter(function(item){
-             return item.completed == false;
+             return !item.completed ;
             });
-            //console.log(unTodos);
             return unTodos.length;    
           }
         },
       });
+      
       </script>
       
       <style>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+         *{
+                        margin: 0;
+                        padding: 0;
+                        list-style: none; 
+                        
+                    }
+
+                body{
+                    background: #d2e7ea;
+                    
+                }
+                h2{
+                    font-size: 36px;
+                }
+                .item{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 1000px;
+                    margin: auto;
+                }
+                .btn{
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    margin: 20px 0;
+                    border: none;
+                    background-color: #3ab6a0;
+                    border-radius: 5px;
+                    font-size: 20px;
+                    outline: none;
+
+                }
+                .pic{
+                    width: 300px;
+                }
+                .pic .one,.pic .two,.pic .thr{
+                    width: 100%;
+                    display: none;
+                }
+                .txt{
+                    font-size: 24px;
+                    margin-bottom: 15px;
+                }
+                .show{
+                    width: 100%;
+                    display: block;
+                }
+    </style>
+<div class="item">
+    <h2>云二周年禮物抽獎</h2>
+        <button class="btn">按我抽籤</button>
+        <p class="txt"></p>
+        <div class="pic">
+        <img src="pic/5EDA269C1672F1591355036.jpg" alt="" class="one">
+        <img src="pic/32393_main.jpg" alt=""  class="two">
+        <img src="pic/800x_100_w-5dde0ddf1b9cf.jpg" alt="" class="thr">
+        </div>
+        
+</div>
+</body>
+<script>
+
+    let btn = document.querySelector('.btn');
+    let txt =document.querySelector('.txt');
+    let one =document.querySelector('.one');
+    let two =document.querySelector('.two');
+    let thr =document.querySelector('.thr');
+
+    btn.addEventListener("click",getRandom,false);
+
+    function getRandom(){
+    let Random = Math.floor(Math.random()*3+1);
+    if(Random == 1){
+        txt.textContent ="恭喜抽到口紅自選 !!!" ;
+        one.className = "show";
+        two.className = "two";
+        thr.className ="thr";
+
+    }else if(Random == 2){
+        txt.textContent ="恭喜抽到項鍊自選 !!!" ;
+        two.className = "show";
+        one.className = "one";
+        thr.className ="thr";
+
+
+    }else if(Random == 3){
+        txt.textContent ="恭喜抽到免費好料 !!!";
+        thr.className ="show";
+
+        one.className = "one";
+        two.className = "two";
+    }
+    
+};
+
+
+</script>
+</html>

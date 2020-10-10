@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功能主頁</title>
+</head>
+<style>
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700,900&display=swap');
+       
+             *{
+                    margin: 0;
+                    padding: 0;
+                    list-style: none; 
+                    font-family: 'Noto Sans TC', sans-serif;
+                }
+            .header{
+                max-width: 1080px;
+                margin: 0px auto;
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .header .date{
+                font-size: 20px;
+                display: flex;
+            }
+           
+            .header .list ul li{
+                
+                display: inline-block;
+                margin: 0px 5px;
+                /* border-bottom: 1px solid #ddd; */
+            }
+            .header .list ul li a{
+                text-decoration: none;
+                font-size: 20px;
+                color: #3c5a2e;
+            }
+            .header .list ul li::after{
+                content: ' ';
+                width: 50px;
+                height: 50px;
+                background-color: #aaa;
+        
+            }
+            .day,.time{
+                margin: 5px;
+            }
+</style>
+<body>
+    <div class="header">
+        <div class="list">
+            <ul>
+                <li><a href="/index.html">簡易備忘錄</a></li>
+                <li><a href="/Vue-todolist.html">備忘錄</a></li>
+                <li><a href="/Vue.Air.html">地區空氣汙染</a></li>
+            </ul>
+        </div>
+        <h1>
+            功能主頁
+        </h1>
+        <div class="date">
+            <div class="day"></div>
+            <div class="time"></div>
+        </div>
+    </div>
+
+    <script>
+        let day = document.querySelector('.day');
+        let time = document.querySelector('.time');
+
+function getTime(){
+    let dt= new Date();
+    let yy= dt.getFullYear();
+    let MM = dt.getMonth()+1;
+    let dd =dt.getDate();
+    let DayOfWeek = dt.getDay();
+    let day_list = ['Sun', 'Mon', 'Thu', 'Wed', 'Ths', 'Fri', 'Sat'];
+    let week = day_list[DayOfWeek];    
+    let hh =dt.getHours();
+    let mm =dt.getMinutes();
+    let ss =dt.getSeconds();
+    MM = addZero(MM);
+    mm = addZero(mm);
+    dd = addZero(dd);
+    ss = addZero(ss);
+
+    let TodayDate = `${yy}/${MM}/${dd}/${week}`;
+    let NowTime =` ${hh}:${mm}:${ss}`;
+    day.innerHTML=TodayDate;
+    time.innerHTML=NowTime;
+}
+
+function addZero(i){
+
+    if(i<10){
+        i = "0"+i;
+    }
+    return i;
+
+}
+
+setInterval(getTime,1000);
+    </script>
+</body>
+</html>

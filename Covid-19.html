@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣Covid-19資訊</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<style>
+    .circle{
+     width: 280px;
+    height: 280px;
+    padding-top: 60px;
+    font-size: 28px;
+    line-height: 50px;
+    }
+    .clr{
+      /* #2f1023 : #d1f4dd */
+      /* #cae1e7 : #2c1c18 */
+      /* background: #cae1e7;*/
+      color: #fff; 
+    } 
+</style>
+</head>
+<body class="bg-dark">
+    <h2 class="text-center my-2  text-white">台灣Covid-19資訊</h2>
+    <div class="map">
+        <img src="https://disease.sh/assets/img/flags/tw.png" class="rounded mx-auto d-block" alt="...">
+
+    </div>
+    <div class="container fw-bold ">
+        <div class="row justify-content-center">
+        <div class="card   circle rounded-circle text-center m-3 clr"  style="background-color: #DAA49A;" >
+        <div class="card-body cases ">
+        </div>
+      </div>
+ 
+    <div class="card   circle rounded-circle text-center m-3 clr "  style="background-color: #DAA49A;" >
+        <div class="card-body  todayCases ">
+        </div>
+      </div>
+
+    
+
+      <div class="card   circle rounded-circle text-center m-3 clr"  style="background-color: #DAA49A;" >
+        <div class="card-body todayDeaths">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+      </div><div class="card  circle rounded-circle text-center m-3 clr"  style="background-color: #DAA49A;">
+        <div class="card-body recovered">
+        </div>
+
+      </div><div class="card circle rounded-circle text-center m-3 clr"  style="background-color: #DAA49A;">
+        <div class="card-body deaths">
+        </div>
+      </div>
+    </div>
+</div>
+
+    <script>
+        let todayCases = document.querySelector('.todayCases');
+        let cases = document.querySelector('.cases');
+        let todayDeaths = document.querySelector('.todayDeaths');
+        let recovered = document.querySelector('.recovered');
+        let deaths = document.querySelector('.deaths');
+
+
+        const url ="https://disease.sh/v3/covid-19/countries/taiwan";
+        fetch(url)
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+          var ParseCases = data.cases;
+          // ParseCases = ParseCases.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            todayCases.innerHTML=`今日死亡個數:</br>  ${data.todayCases}`;
+            cases.innerHTML=`今日累積總數:</br> ${ParseCases}`;
+            todayDeaths.innerHTML=`今日死亡人數:</br> ${data.todayDeaths}`;
+            recovered.innerHTML=`已康復人數:</br> ${data.recovered}`;
+            deaths.innerHTML=`死亡數:</br> ${data.deaths}`;
+
+        });
+
+    </script>
+</body>
+</html>

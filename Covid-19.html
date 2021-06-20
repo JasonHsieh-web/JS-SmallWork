@@ -75,11 +75,11 @@
         .then(function(data) {
           var ParseCases = data.cases;
           // ParseCases = ParseCases.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-            todayCases.innerHTML=`今日死亡個數:</br>  ${data.todayCases}`;
+            todayCases.innerHTML=`今日病例個數:</br>  ${data.todayCases}`;
             cases.innerHTML=`今日累積總數:</br> ${ParseCases}`;
             todayDeaths.innerHTML=`今日死亡人數:</br> ${data.todayDeaths}`;
             recovered.innerHTML=`已康復人數:</br> ${data.recovered}`;
-            deaths.innerHTML=`死亡數:</br> ${data.deaths}`;
+            deaths.innerHTML=`總死亡數:</br> ${data.deaths}`;
 
         });
 
